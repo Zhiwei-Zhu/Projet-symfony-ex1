@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TachesController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <nav class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{path('accueil')}}">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{path('taches')}}">Tache</a>
+        </li>
+    </nav>
+    <h1 class="text-center">Page Taches</h1>
+    <div class="card bg-light" style="padding: 20px">
+        {{ form(formtache) }}
+    </div>
+    <ul class="list-group">
+        {% for tache in taches %}
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-5">
+                        <a href="{{path('updatetache', {id: tache.id})}}">{{tache.nom }}</a>
+                    </div>
+                    <div class="col-5">
+                        <p>{{tache.deadline | date('d/m/Y H:i:s') }}</p>
+                    </div>
+                    <div class="col-2">
+                        <input type="checkbox" disabled {%if tache.etat%} checked {% endif %}>
+                    </div>
+                </div>
+
+            </div>
+
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TachesController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <nav class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{path('accueil')}}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('taches')}}">Tache</a>
+            </li>
+        </nav>
+        <h1 class="text-center">Taches</h1>
+        <div class="card bg-light" style="padding: 20px">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

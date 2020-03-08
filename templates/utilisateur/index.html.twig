@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+<div class="container">
+        <nav class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{path('accueil')}}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('taches')}}">Tache</a>
+            </li>
+        </nav>
+        <h1 class="text-center">Page utilisateur</h1>
+        <div class="card bg-light" style="padding: 20px;margin:20px">
+            {{ form(form) }}
+        </div>
+    {%  if lenght > 0 %}
+    <ul class="list-group">
+        {% for tache in taches %}
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="{{path('updatetache', {id: tache.id})}}">{{tache.nom }}</a>
+                    </div>
+                    <div class="col-3">
+                        <p>{{tache.deadline | date('d/m/Y H:i:s') }}</p>
+                    </div>
+                    <div class="col-2">
+                        <input type="checkbox" disabled {%if tache.etat%} checked {% endif %}>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{path('remove', {id: tache.id})}}" class="btn btn-danger">Supprimer</a>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{path('update', {id: tache.id})}}" class="btn btn-success">Valider</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <p>{{ utilisateur.nom }} {{ utilisateur.prenom }} ne possède aucune tâche</p>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

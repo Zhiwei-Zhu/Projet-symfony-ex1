@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="container" >
+        <nav class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{path('accueil')}}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('taches')}}">Tache</a>
+            </li>
+        </nav>
+        <h1 class="text-center">Accueil</h1>
+        <div class="card bg-light" style="padding: 20px;margin:20px">
+            {{ form(form) }}
+        </div>
+
+        {%  if lenght > 0 %}
+            <ul class="list-group">
+                {% for utilisateur in utilisateurs %}
+                    <li class="list-group-item"><a href="{{ path('utilisateur',{id: utilisateur.id} ) }}">{{ utilisateur.nom }} {{ utilisateur.prenom }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Il n'y a aucun utilisateur</p>
+        {% endif %}
+    </div>
+{% endblock %}
